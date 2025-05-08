@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      xmlns:c="http://jmix.io/schema/flowui/jpql-condition"
+      title="msg://ordersListView.title"
+      focusComponent="ordersesDataGrid">
+    <data>
+        <collection id="ordersesDc"
+                    class="com.company.setera_jkh.entity.Orders">
+            <fetchPlan extends="_instance_name">
+                <property name="responsible" fetchPlan="_base"/>
+                <property name="images">
+                    <property name="fileRef"/>
+                </property>
+                <property name="createdBy"/>
+                <property name="createdDate"/>
+                <property name="lastModifiedBy"/>
+                <property name="lastModifiedDate"/>
+            </fetchPlan>
+            <loader id="ordersesDl" readOnly="true">
+                <query>
+                    <![CDATA[select e from setera_Orders e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <urlQueryParameters>
+            <genericFilter component="genericFilter"/>
+            <pagination component="pagination"/>
+        </urlQueryParameters>
+    </facets>
+    <actions>
+        <action id="selectAction" type="lookup_select"/>
+        <action id="discardAction" type="lookup_discard"/>
+    </actions>
+    <layout>
+        <genericFilter id="genericFilter"
+                       dataLoader="ordersesDl">
+            <properties include=".*"/>
+        </genericFilter>
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button id="createButton" action="ordersesDataGrid.createAction"/>
+            <button id="editButton" action="ordersesDataGrid.editAction"/>
+            <button id="removeButton" action="ordersesDataGrid.removeAction"/>
+            <simplePagination id="pagination" dataLoader="ordersesDl"/>
+        </hbox>
+        <dataGrid id="ordersesDataGrid"
+                  width="100%"
+                  minHeight="20em"
+                  dataContainer="ordersesDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="createAction" type="list_create"/>
+                <action id="editAction" type="list_edit"/>
+                <action id="removeAction" type="list_remove"/>
+            </actions>
+            <columns resizable="true" includeAll="true">
+                <column property="responsible"/>
+                <column property="images"/>
+            </columns>
+        </dataGrid>
+        <hbox id="lookupActions" visible="false">
+            <button id="selectButton" action="selectAction"/>
+            <button id="discardButton" action="discardAction"/>
+        </hbox>
+    </layout>
+</view>

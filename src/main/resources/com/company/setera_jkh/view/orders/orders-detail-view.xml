@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<view xmlns="http://jmix.io/schema/flowui/view"
+      title="msg://ordersDetailView.title"
+      focusComponent="form">
+    <data>
+        <instance id="ordersDc"
+                  class="com.company.setera_jkh.entity.Orders">
+            <fetchPlan extends="_instance_name">
+                <property name="responsible" fetchPlan="_base"/>
+                <property name="createdBy"/>
+                <property name="createdDate"/>
+                <property name="lastModifiedBy"/>
+                <property name="lastModifiedDate"/>
+                <property name="images" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader id="ordersDl"/>
+
+        </instance>
+        <collection id="imagesesDc" class="com.company.setera_jkh.entity.Images">
+            <loader id="imagesesDl" readOnly="true">
+
+                <query>
+                    <![CDATA[select e from setera_Images e where e.orders = :orders]]>
+                </query>
+            </loader>
+            <fetchPlan extends="_base"/>
+        </collection>
+    </data>
+
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+    </facets>
+    <actions>
+        <action id="saveAction" type="detail_saveClose"/>
+        <action id="closeAction" type="detail_close"/>
+    </actions>
+    <layout>
+        <div id="infoPanel" themeNames="badge success" text="msg://infoPanel.text.noChanges" height="2em" alignSelf="CENTER"/>
+        <formLayout id="form" dataContainer="ordersDc">
+            <responsiveSteps>
+                <responsiveStep minWidth="0" columns="1"/>
+                <responsiveStep minWidth="40em" columns="2"/>
+            </responsiveSteps>
+            <entityPicker id="responsibleField" property="responsible">
+                <actions>
+                    <action id="entityLookupAction" type="entity_lookup"/>
+                    <action id="entityClearAction" type="entity_clear"/>
+                </actions>
+            </entityPicker>
+        </formLayout>
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveAction"/>
+            <button id="closeButton" action="closeAction"/>
+        </hbox>
+
+        <hbox id="buttonsPanel" classNames="buttons-panel">
+            <button id="removeBtn" action="imagesDataGrid.removeAction"/>
+        </hbox>
+        <dataGrid id="imagesDataGrid"
+                  dataContainer="imagesesDc"
+                  columnReorderingAllowed="true">
+            <actions>
+                <action id="removeAction" type="list_remove"/>
+            </actions>
+            <columns>
+                <column property="fileRef"/>
+            </columns>
+        </dataGrid>
+
+
+        <upload id="upload"
+                dropAllowed="true"
+                maxFileSize="10000000"
+                receiverType="MULTI_FILE_TEMPORARY_STORAGE_BUFFER"
+                autoUpload="true"
+                maxFiles="10"
+                uploadText="Upload Files"/>
+    </layout>
+</view>
