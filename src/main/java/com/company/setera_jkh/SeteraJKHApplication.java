@@ -21,7 +21,7 @@ import javax.sql.DataSource;
 
 @Push
 @Theme(value = "Setera_JKH")
-@PWA(name = "Setera_JKH", shortName = "Setera_JKH")
+@PWA(name = "Setera_JKH", shortName = "Setera_JKH",backgroundColor = "#235FD5", display = "standalone")
 @SpringBootApplication
 public class SeteraJKHApplication implements AppShellConfigurator {
 

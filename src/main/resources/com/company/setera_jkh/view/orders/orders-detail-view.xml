@@ -31,37 +31,34 @@
         <dataLoadCoordinator auto="true"/>
     </facets>
     <actions>
-        <action id="saveAction" type="detail_saveClose"/>
-        <action id="closeAction" type="detail_close"/>
+        <action id="saveAction" type="detail_saveClose" description="msg://saveAction.description"/>
+        <action id="closeAction" type="detail_close" description="msg://closeAction.description"/>
     </actions>
     <layout>
+        <hbox id="detailActions">
+            <button id="saveAndCloseButton" action="saveAction" title="msg://saveAndCloseButton.title"/>
+            <button id="closeButton" action="closeAction" title="msg://closeButton.title"/>
+        </hbox>
         <div id="infoPanel" themeNames="badge success" text="msg://infoPanel.text.noChanges" height="2em" alignSelf="CENTER"/>
         <formLayout id="form" dataContainer="ordersDc">
             <responsiveSteps>
                 <responsiveStep minWidth="0" columns="1"/>
                 <responsiveStep minWidth="40em" columns="2"/>
             </responsiveSteps>
-            <entityPicker id="responsibleField" property="responsible">
+            <entityPicker id="responsibleField" property="responsible" label="msg://responsibleField1.label"
+                          placeholder="msg://responsibleField.placeholder" title="msg://responsibleField.title">
                 <actions>
                     <action id="entityLookupAction" type="entity_lookup"/>
                     <action id="entityClearAction" type="entity_clear"/>
                 </actions>
             </entityPicker>
         </formLayout>
-        <hbox id="detailActions">
-            <button id="saveAndCloseButton" action="saveAction"/>
-            <button id="closeButton" action="closeAction"/>
-        </hbox>
 
-        <hbox id="buttonsPanel" classNames="buttons-panel">
-            <button id="removeBtn" action="imagesDataGrid.removeAction"/>
-        </hbox>
+
+
         <dataGrid id="imagesDataGrid"
                   dataContainer="imagesesDc"
                   columnReorderingAllowed="true">
-            <actions>
-                <action id="removeAction" type="list_remove"/>
-            </actions>
             <columns>
                 <column property="fileRef"/>
             </columns>

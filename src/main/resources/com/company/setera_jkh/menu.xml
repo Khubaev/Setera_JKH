@@ -5,7 +5,6 @@
         <item view="setera_User.list" title="msg://com.company.setera_jkh.view.user/UserListView.title"/>
         <item view="setera_Buildings.list" title="msg://com.company.setera_jkh.view.buildings/buildingsListView.title"/>
         <item view="setera_Orders.list" title="msg://com.company.setera_jkh.view.orders/ordersListView.title"/>
-        <item view="setera_Images.list" title="msg://com.company.setera_jkh.view.images/imagesListView.title"/>
     </menu>
 
 </menu-config>
