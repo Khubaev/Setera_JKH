@@ -11,7 +11,7 @@ liquibase {
             url "jdbc:postgresql://localhost:5432/JKH"
             username "postgres"
             password "setera90"
-            changelogFile "com/company/test/liquibase/changelog.xml"
+            changelogFile "/com/company/setera_jkh/liquibase/changelog.xml"
         }
     }
 }
