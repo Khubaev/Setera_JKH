@@ -24,7 +24,7 @@ jmix {
 }
 
 group = 'com.company'
-version = '0.0.1-SNAPSHOT'
+version = '1'
 
 repositories {
     mavenCentral()
@@ -53,11 +53,13 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.liquibase:liquibase-core:4.32.0'
     implementation 'org.postgresql:postgresql:42.7.5'
+    implementation 'org.liquibase:liquibase-core'
 
     testImplementation('org.springframework.boot:spring-boot-starter-test') {
         exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
     }
     testImplementation 'io.jmix.flowui:jmix-flowui-test-assist'
+
     implementation 'org.hsqldb:hsqldb'
 }
 

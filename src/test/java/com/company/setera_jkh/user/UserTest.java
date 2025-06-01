@@ -19,7 +19,7 @@ import static org.assertj.core.api.Assertions.assertThat;
  */
 @SpringBootTest
 @ExtendWith(AuthenticatedAsAdmin.class)
-public class UserTest {
+class UserTest {
 
     @Autowired
     DataManager dataManager;
