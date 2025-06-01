@@ -49,7 +49,7 @@ public class SeteraJKHApplication implements AppShellConfigurator {
     @EventListener
     public void printApplicationUrl(final ApplicationStartedEvent event) {
         LoggerFactory.getLogger(SeteraJKHApplication.class).info("Application started at "
-                + "http://localhost:"
+                + "http://0.0.0.0:"
                 + environment.getProperty("local.server.port")
                 + Strings.nullToEmpty(environment.getProperty("server.servlet.context-path")));
     }
